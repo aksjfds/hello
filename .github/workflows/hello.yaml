@@ -2,7 +2,7 @@ on: push
 
 jobs:
   build-windows:
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     steps:
       # 检出代码
@@ -22,12 +22,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cargo-
 
-      # 设置Rust工具链
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: stable
-          targets: x86_64-pc-windows-msvc
+      # # 设置Rust工具链
+      # - name: Setup Rust
+      #   uses: dtolnay/rust-toolchain@stable
+      #   with:
+      #     toolchain: stable
+      #     targets: x86_64-pc-windows-msvc
 
       # 构建发布版
       - name: Build Release
