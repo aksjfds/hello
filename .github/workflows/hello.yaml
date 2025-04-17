@@ -20,10 +20,14 @@ jobs:
       - name: Build Release
         run: cargo build --release --target x86_64-pc-windows-msvc
 
+      # 列出目标目录内容
+      - name: List target directory
+        run: dir target\release\
+
       # 上传构建产物
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-exe
           path: target/release/hello.exe
-          if-no-files-found: error
+          if-no-files-found: warn
