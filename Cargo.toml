@@ -1,0 +1,18 @@
+[package]
+name = "hello"
+version = "0.1.0"
+edition = "2021"
+
+[dev-dependencies]
+criterion = "0.5.1"
+
+[[bench]]
+name = "benchmark"
+harness = false
+
+[dependencies]
+actix-web = "4.10.2"
+rfd = "0.15.3"
+# futures = "0.3.31"
+# reqwest = "0.12.12"
+tokio = { version = "1.43.0", features = ["full"] }
