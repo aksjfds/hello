@@ -9,6 +9,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 缓存Rust依赖和构建产物
+      - name: Cache Rust dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/
+            ~/.cargo/git/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
       # 设置Rust工具链
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
@@ -22,12 +35,12 @@ jobs:
 
       # 列出目标目录内容
       - name: List target directory
-        run: dir target\release\
+        run: dir D:\a\hello\
 
       # 上传构建产物
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-exe
-          path: target/release/hello.exe
+          path: target\release\hello.exe
           if-no-files-found: warn
